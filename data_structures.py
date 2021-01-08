@@ -1,8 +1,8 @@
-import os, app
+import os
 from datetime import datetime
 
 time_pattern = "%H:%M:%S %d/%m/%Y"
-
+default_iconsPath = "/icons/"
 def format_bytes(size):
     # 2**10 = 1024
     power = 2**10
@@ -26,12 +26,12 @@ class FileData:
         self.caption = os.path.basename(filename)
         extension = os.path.splitext(filename)[1]
         if extension == ".apk":
-            self.iconPath = os.path.join(app.default_iconsPath, "apk.png")
+            self.iconPath = os.path.join(default_iconsPath, "apk.png")
         else:
             if isImage(extension):
                 self.iconPath = filename
             else:
-                self.iconPath = os.path.join(app.default_iconsPath, "file.png")
+                self.iconPath = os.path.join(default_iconsPath, "file.png")
 
 class DirectoryData:
     def __init__(self, path):
