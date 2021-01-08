@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <title>Simple File Serverr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+        img {
+            display: block;
+            max-width:100px;
+            max-height:100px;
+            width: auto;
+            height: auto;
+        }
+        body {
+            position: relative;
+        }
+
+        body::after {
+            content: '';
+            display: block;
+            height: 50px; /* Set same as footer's height */
+        }
+
+        footer {
+            position: absolute;
+            bottom: -10px;
+            width: 100%;
+            height: 50px;
+            text-align: right;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 class="pt-3 pl-3">Simple File Server</h1>
+    <div class="row pt-5">
+    {% for dir in dirlist %}
+        <div class="col-sm-4">
+            <div class="card ml-2 mr-2 pt-2 pb-2">
+              <div class="card-body">
+                  <h3 class="card-title d-flex justify-content-between">{{dir.caption}}
+                      <img class="card-img-left" width="50" height="50" src="/icons/folder.png" alt="folder"></h3>
+                  <a href="{{dir.href}}" class="btn btn-primary">Open</a>
+              </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="row pt-4">
+    {% for file in filelist %}
+        <div class="col-sm-4 pt-2">
+            <div class="card ml-2 mr-2 pt-2 pb-2">
+              <div class="card-body">
+                  <div class="col">
+                      <h3 class="card-title d-flex justify-content-between">{{file.caption}}
+                          <img class="card-img-left" width="50" height="50" src="{{file.iconPath}}" alt=""></h3>
+                  </div>
+                  <p><i><b>Created:</b></i> {{file.creationTime}}</p>
+                  <p><i><b>Modified:</b></i> {{file.modificationTime}}</p>
+                  <p><i><b>File Size:</b></i> {{file.fileSize}}</p>
+                    <a href="{{file.href}}" class="btn btn-primary">Download</a>
+
+              </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <footer class="footer">
+      <div class="container">
+          <p class="text-muted">Created by <a href="https://github.com/nox7atra">Grygory Dyadichenko</a>. You can find repository on <a href="google.com">Github</a></p>
+      </div>
+    </footer>
+</body>
+</html>
